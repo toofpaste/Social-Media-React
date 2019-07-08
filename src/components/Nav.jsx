@@ -13,6 +13,7 @@ const NavWrapper = styled.div `
     font-size: 1.3em;
     background: linear-gradient(45deg, #000428,#004e92);
     display: flex;
+    border-radius: 20px;
     align-items: flex-end;
     justify-content: space-around;
     box-shadow: 0 8px 6px -6px black;
@@ -51,7 +52,7 @@ const TitleText = styled.h1`
 `
 
 var navImage = {
-
+    borderRadius: "10px",
     width: "200px",
     height: '200px',
     border: '1px solid black',
@@ -68,6 +69,9 @@ const useStyles = makeStyles(theme => ({
     button: {
       margin: theme.spacing(1),
 
+    },
+    Link: {
+        color: 'white',
     },
     input: {
       display: 'none',
