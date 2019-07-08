@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
 height: 60rem;
-    background-color: green;
+    background-color: #C8CEE7;
     width: 100%;
     box-shadow: 5px 5px 20px;
 `

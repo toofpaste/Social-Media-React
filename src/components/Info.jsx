@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
 height: 60rem;
-    background-color: red;
+background: linear-gradient(45deg, #000428,#004e92);
+opacity: 0.8;
     width: 100%;
     box-shadow: 5px 5px 20px;
 `
