@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
 height: 60rem;
-background: linear-gradient(45deg, #000428,#004e92);
+background: linear-gradient(45deg, #BBB9B9,#F8F8F8);
 opacity: 0.5;
     width: 100%;
     box-shadow: 5px 5px 20px;
