@@ -2,8 +2,10 @@ import React from 'react';
 import Nav from './Nav';
 import Info from './Info';
 import Friends from './Friends'
-import Status from './Status'
 import styled from 'styled-components';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import YourStatusList from "./YourStatusList";
+import NewStatusControl from './NewStatusControl'
 
 const Grid = styled.div`
     display: grid;
@@ -13,17 +15,65 @@ const Grid = styled.div`
     justify-items: center;
 `
 
-export default (App) => {
-    return(
-        <div>
-             <Nav/>
-             <Grid>
-                <Info/>
-                <Status/>
-                <Friends/>
+class App extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            masterYourStatusList: []
+        };
+        this.handleAddingNewStatusToList = this.handleAddingNewStatusToList.bind(this);
+    }
+    handleAddingNewStatusToList(newStatus){
+        const newMasterYourStatusList = this.state.masterYourStatusList.slice();
+        newMasterYourStatusList.push(newStatus);
+        this.setState({masterYourStatusList: newMasterYourStatusList})
+        console.log(newMasterYourStatusList);
+    }
+    render() {
+        return (
+            <BrowserRouter>
+                <div>
+                    <Nav/>
+                    <Grid>
+                    <Info/>
+                    <Switch>
+                        
+                        <Route exact path='/' render={() =><YourStatusList yourStatusList={this.state.masterYourStatusList}/>} />
+                        <Route path='/newstatus' render={()=><NewStatusControl onNewStatusCreation={this.handleAddingNewStatusToList}/>} />
+                    </Switch>
+                    <Friends/>
              </Grid>
-        </div>
-       
-    )
+                </div>
+            </BrowserRouter>
+        );
+    }
+
 }
+
+
+
+export default App;
+
+
+
+
+
+// export default (App) => {
+//     return(
+//         <div>
+//              <Nav/>
+//              <Grid>
+//                 <Info/>
+//                 <BrowserRouter>
+//                 <Switch>
+//                 {/* <Route path='/' render={() =><Stat/>}/> */}
+//                 <Route path='/newstatus' render={() =><Stat/>}/>
+//                 </Switch>
+//                 </BrowserRouter>
+//                 <Friends/>
+//              </Grid>
+//         </div>
+       
+//     )
+// }
 

@@ -5,6 +5,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { flexbox, positions } from '@material-ui/system';
 import Jerk1 from './assets/jerk1.jpeg'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const NavWrapper = styled.div `
     height: 12em;
@@ -80,9 +81,9 @@ export default (Nav) => {
         <TitleText>FootBook</TitleText>
         <NavWrapper>
             <NavButton>
-                <TextAnimation>Home</TextAnimation>
-                <TextAnimation>Profile</TextAnimation>
-                <TextAnimation>New</TextAnimation>
+                <TextAnimation><Link to="/">Home</Link></TextAnimation>
+                <TextAnimation><Link to='/newstatus'>Profile</Link></TextAnimation>
+                <TextAnimation><Link to="/newstatus">New</Link></TextAnimation>
             </NavButton>
             </NavWrapper>
         <div style={navImage}></div>
