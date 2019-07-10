@@ -24,11 +24,29 @@ class App extends React.Component{
         this.handleAddingNewStatusToList = this.handleAddingNewStatusToList.bind(this);
     }
     handleAddingNewStatusToList(newStatus){
+     
         const newMasterYourStatusList = this.state.masterYourStatusList.slice();
+        newStatus.formattedWaitTime = (newStatus.time).fromNow(true);
         newMasterYourStatusList.push(newStatus);
         this.setState({masterYourStatusList: newMasterYourStatusList})
-        console.log(newMasterYourStatusList);
+        
     }
+    componentDidMount() {
+        this.waitTimeUpdateTimer = setInterval(() =>
+          this.updateStatusElapsedWaitTime(),
+          5000
+        );
+      }
+      updateStatusElapsedWaitTime() {
+        let newMasterStatusList = this.state.masterYourStatusList.slice();
+        newMasterStatusList.forEach((status) =>
+          status.formattedWaitTime = (status.time).fromNow(true)
+        );
+        this.setState({masterYourStatusList: newMasterStatusList})
+      }
+      componentWillUnmount(){
+        clearInterval(this.waitTimeUpdateTimer);
+      }
     render() {
         return (
             <BrowserRouter>
@@ -47,9 +65,10 @@ class App extends React.Component{
             </BrowserRouter>
         );
     }
+    
+    
 
 }
-
 
 
 export default App;

@@ -2,7 +2,7 @@ import React from "react";
 import Status from "./YourProf";
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
+import Moment from 'moment';
 
 const Wrapper = styled.div`
 height: 60rem;
@@ -13,13 +13,18 @@ opacity: 0.5;
 `
 
 function YourStatusList(props) {
-    console.log(props.yourStatusList);
-
+    function formatTime(){
+       let allStatusList = props.yourStatusList.slice();
+       allStatusList.forEach((status) =>
+       status.formattedWaitTime = status.time.fromNow(true)
+       )
+    }
+    formatTime();
     return(
        <div>
             {props.yourStatusList.map((statuses)=>
                 <Status names={statuses.names}
-                        time = {statuses.time}
+                        formattedWaitTime = {statuses.formattedWaitTime}
                         status={statuses.status}
                         key={statuses.id}/>
             )}
